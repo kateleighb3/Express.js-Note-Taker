@@ -9,7 +9,7 @@ const fs = require('fs'); //importing fs module
 const express = require('express'); // importing express module
 const app = express(); // the main app
 
-const theNotes = require('./db/db.json');
+const theNotes = require('/db/db.json');
 
 //these lines set up middleware for the Express application:
 app.use(express.urlencoded({extended: true}));//middleware used to parse incoming URL-encoded form data; allows you to access
@@ -27,12 +27,12 @@ app.get('/api/notes', (req, res) => { //a route handler that defines a GET route
 app.get('/', (req, res) => { //This route handler defines a GET route at the root path ('/'). 
     //When a request is made to the root path, it responds with the 'index.html' file located in the 'public' directory. 
     //res.sendFile() is used to send static files as a response.
-    res.sendFile(path.join(__dirname, './public/index.html'));
+    res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
 app.get('/notes', (req, res) => { //This route handler defines a GET route at '/notes'. 
     //When a request is made to '/notes', it responds with the 'notes.html' file located in the 'public' directory.
-    res.sendFile(path.join(__dirname, './public/notes.html'));
+    res.sendFile(path.join(__dirname, '/public/notes.html'));
 });
 
 app.get('*', (req, res) => { //This route handler is a catch-all route that responds to any other GET requests 
@@ -44,7 +44,7 @@ function createNewNote(body, notesArray) {
     const note = body;
     notesArray.push(note);
     fs.writeFileSync(
-        path.join(__dirname, './db/db.json'),
+        path.join(__dirname, '/db/db.json'),
         JSON.stringify({ notesArray }, null, 2)
     );
     return note;
@@ -71,7 +71,7 @@ notesArray.forEach(note => {
 });
 
 fs.writeFileSync(
-    path.join(__dirname, './db/db.json'),
+    path.join(__dirname, '/db/db.json'),
     JSON.stringify({ notesArray }, null, 2)
 );
 return notesArray;
