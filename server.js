@@ -29,6 +29,11 @@ app.get('/notes', (req, res) => { //This route handler defines a GET route at '/
     res.sendFile(path.join(__dirname, '/public/notes.html'));
 });
 
+app.get('*', (req, res) => { //This route handler is a catch-all route that responds to any other GET requests 
+    //that don't match the defined routes. It serves the 'index.html' file as the response.
+    res.sendFile(path.join(__dirname, '/public/index.html'));
+});
+
 function createNewNote(body, notesArray) {
     const note = body;
     notesArray.push(note);
